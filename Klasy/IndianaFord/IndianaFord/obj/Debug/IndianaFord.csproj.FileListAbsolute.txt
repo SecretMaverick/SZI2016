@@ -1,0 +1,8 @@
+c:\users\secre\documents\visual studio 2013\Projects\IndianaFord\IndianaFord\bin\Debug\IndianaFord.exe.config
+C:\Users\secre\documents\visual studio 2013\Projects\IndianaFord\IndianaFord\bin\Debug\IndianaFord.exe
+C:\Users\secre\documents\visual studio 2013\Projects\IndianaFord\IndianaFord\bin\Debug\IndianaFord.pdb
+C:\Users\secre\documents\visual studio 2013\Projects\IndianaFord\IndianaFord\obj\Debug\IndianaFord.csprojResolveAssemblyReference.cache
+C:\Users\secre\documents\visual studio 2013\Projects\IndianaFord\IndianaFord\obj\Debug\IndianaFord.Properties.Resources.resources
+C:\Users\secre\documents\visual studio 2013\Projects\IndianaFord\IndianaFord\obj\Debug\IndianaFord.csproj.GenerateResource.Cache
+C:\Users\secre\documents\visual studio 2013\Projects\IndianaFord\IndianaFord\obj\Debug\IndianaFord.exe
+C:\Users\secre\documents\visual studio 2013\Projects\IndianaFord\IndianaFord\obj\Debug\IndianaFord.pdb
