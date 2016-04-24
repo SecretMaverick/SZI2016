@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApplication1", "WindowsFormsApplication1\WindowsFormsApplication1.csproj", "{D628A7E0-6C5A-4585-BE37-174CD09E2354}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SZI2016", "WindowsFormsApplication1\SZI2016.csproj", "{D628A7E0-6C5A-4585-BE37-174CD09E2354}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

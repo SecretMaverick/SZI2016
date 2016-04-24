@@ -1,0 +1,9 @@
+E:\Downloads\SZI2016-master\SZI2016-master\SourceCode\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe.config
+E:\Downloads\SZI2016-master\SZI2016-master\SourceCode\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+E:\Downloads\SZI2016-master\SZI2016-master\SourceCode\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+E:\Downloads\SZI2016-master\SZI2016-master\SourceCode\WindowsFormsApplication1\obj\Debug\SZI2016.csprojResolveAssemblyReference.cache
+E:\Downloads\SZI2016-master\SZI2016-master\SourceCode\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Form1.resources
+E:\Downloads\SZI2016-master\SZI2016-master\SourceCode\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+E:\Downloads\SZI2016-master\SZI2016-master\SourceCode\WindowsFormsApplication1\obj\Debug\SZI2016.csproj.GenerateResource.Cache
+E:\Downloads\SZI2016-master\SZI2016-master\SourceCode\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+E:\Downloads\SZI2016-master\SZI2016-master\SourceCode\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
