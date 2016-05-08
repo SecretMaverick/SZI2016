@@ -12,10 +12,10 @@ namespace WindowsFormsApplication1
 {
     public partial class Form1 : Form
     {
-        PictureBox[,] pctBox = new PictureBox[15, 15];
-        TextBox text;
-        bool generated = false;
-        int[,] smallTab = new int[15, 15];
+        public static PictureBox[,] pctBox = new PictureBox[15, 15];
+        public TextBox text;
+        public bool generated = false;
+        public int[,] smallTab = new int[15, 15];
         public Form1()
         {
             InitializeComponent();
@@ -79,6 +79,12 @@ namespace WindowsFormsApplication1
                     
                 }
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Prog prog = new Prog();
+            prog.Run();
         }
     }
 }
