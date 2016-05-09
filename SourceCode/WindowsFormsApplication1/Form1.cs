@@ -13,7 +13,7 @@ namespace WindowsFormsApplication1
     public partial class Form1 : Form
     {
         public static PictureBox[,] pctBox = new PictureBox[15, 15];
-        public TextBox text;
+        public static TextBox text;        
         public bool generated = false;
         public int[,] smallTab = new int[15, 15];
         public Form1()
@@ -30,6 +30,7 @@ namespace WindowsFormsApplication1
         public void dodajtextbox()
         {
             text = new TextBox();
+            text.ScrollBars = ScrollBars.Vertical;
             text.Location = new Point(10, (14 * 30) + 10);
             text.Height = 100;
             text.Multiline = true;
@@ -84,6 +85,7 @@ namespace WindowsFormsApplication1
         private void button1_Click(object sender, EventArgs e)
         {
             Prog prog = new Prog();
+            this.Text = string.Empty;
             prog.Run();
         }
     }

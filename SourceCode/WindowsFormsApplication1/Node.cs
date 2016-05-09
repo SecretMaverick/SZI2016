@@ -9,7 +9,7 @@ namespace WindowsFormsApplication1
 {
     class Node
     {
-        private Node parentNode;
+        public Node parentNode;
 
         /// <summary>
         /// The node's location in the grid

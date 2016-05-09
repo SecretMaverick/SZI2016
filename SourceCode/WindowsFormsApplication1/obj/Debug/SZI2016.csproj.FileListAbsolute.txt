@@ -16,3 +16,12 @@ C:\Users\downa\Desktop\SZI2016\SourceCode\WindowsFormsApplication1\obj\Debug\SZI
 C:\Users\downa\Desktop\SZI2016\SourceCode\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Form1.resources
 C:\Users\downa\Desktop\SZI2016\SourceCode\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
 C:\Users\downa\Desktop\SZI2016\SourceCode\WindowsFormsApplication1\obj\Debug\SZI2016.csproj.GenerateResource.Cache
+j:\Desktop\SZI2016\SourceCode\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe.config
+j:\Desktop\SZI2016\SourceCode\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.exe
+j:\Desktop\SZI2016\SourceCode\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.pdb
+j:\Desktop\SZI2016\SourceCode\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.exe
+j:\Desktop\SZI2016\SourceCode\WindowsFormsApplication1\bin\Debug\WindowsFormsApplication1.pdb
+j:\Desktop\SZI2016\SourceCode\WindowsFormsApplication1\obj\Debug\SZI2016.csprojResolveAssemblyReference.cache
+j:\Desktop\SZI2016\SourceCode\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Form1.resources
+j:\Desktop\SZI2016\SourceCode\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.Properties.Resources.resources
+j:\Desktop\SZI2016\SourceCode\WindowsFormsApplication1\obj\Debug\SZI2016.csproj.GenerateResource.Cache

@@ -13,6 +13,23 @@ namespace WindowsFormsApplication1
         private bool[,] map;
         private SearchParameters searchParameters;
 
+        public string Direct(int tempX, int tempY)
+        {
+            
+                if(tempX==-1 && tempY==-1) return "North West";
+            if (tempX == 0 && tempY == -1) return "North";
+            if (tempX == 1 && tempY == -1) return "North East";
+            if (tempX == -1 && tempY == 0) return "West";
+            if (tempX == 1 && tempY == 0) return "East";
+            if (tempX == -1 && tempY == 1) return "South West";
+            if (tempX == 0 && tempY == 1) return "South";
+            if (tempX == 1 && tempY == 1) return "South East";
+            else return "error";
+                
+            
+
+        }
+
         public void Run()
         {
             // Start with a clear map (don't add any obstacles)
@@ -54,7 +71,7 @@ namespace WindowsFormsApplication1
                     if (this.searchParameters.StartLocation.Equals(new Point(x, y)))
                     {
                         // Show the start position
-                       // Console.Write('S');
+                        // Console.Write('S');
                         Form1.pctBox[x, y].BackColor = Color.Blue;
                     }
                     else if (this.searchParameters.EndLocation.Equals(new Point(x, y)))
@@ -64,8 +81,12 @@ namespace WindowsFormsApplication1
                         // Show any barriers
                         Form1.pctBox[x, y].BackColor = Color.Black;
                     else if (path.Where(p => p.X == x && p.Y == y).Any())
+                    {
                         // Show the path in between
                         Form1.pctBox[x, y].BackColor = Color.Green;
+                        //Form1.text.AppendText("Step: " + (x + 1).ToString() + " " + (y + 1).ToString() + "\r\n");
+                    }
+                    
                     //else
                         // Show nodes that aren't part of the path
                         //Console.Write('#');
@@ -74,6 +95,30 @@ namespace WindowsFormsApplication1
 
                 //Console.WriteLine();
             }
+            for (int i = 0; i < path.Count(); i++)
+            {
+                Form1.text.AppendText("Step: " + (path.ElementAt(i).X+1).ToString() + " " + (path.ElementAt(i).Y+1).ToString() + " ");
+                
+                
+                    int tempX;
+                    int tempY;
+                    if (i == 0)
+                    {
+                        tempX = path.ElementAt(i).X - this.searchParameters.StartLocation.X;
+                        tempY = path.ElementAt(i).Y - this.searchParameters.StartLocation.Y;
+                    }
+                    else
+                    {
+                        tempX = path.ElementAt(i).X - path.ElementAt(i - 1).X;
+                        tempY = path.ElementAt(i).Y - path.ElementAt(i - 1).Y;
+                    }
+                    Form1.text.AppendText(this.Direct(tempX, tempY)+ " \r\n");
+
+
+                    
+                
+            }
+            Form1.text.AppendText("Dotarłeś do celu. \r\n");
         }
 
         private void InitializeMap()
@@ -104,6 +149,9 @@ namespace WindowsFormsApplication1
 
             // Path: 1,2 ; 2,1 ; 3,0 ; 4,0 ; 5,1 ; 5,2
 
+            this.map[2, 1] = false;
+            this.map[1, 2] = false;
+            this.map[2, 2] = false;
             this.map[4, 3] = false;
             this.map[4, 4] = false;
             this.map[4, 5] = false;
