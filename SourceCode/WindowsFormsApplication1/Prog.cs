@@ -9,14 +9,15 @@ namespace WindowsFormsApplication1
 {
     class Prog
     {
-
         private bool[,] map;
+        public static string[,] EventMap = new string[14, 14];
         private SearchParameters searchParameters;
+
+        Populacja test = new Populacja();
 
         public string Direct(int tempX, int tempY)
         {
-            
-                if(tempX==-1 && tempY==-1) return "North West";
+            if (tempX == -1 && tempY == -1) return "North West";
             if (tempX == 0 && tempY == -1) return "North";
             if (tempX == 1 && tempY == -1) return "North East";
             if (tempX == -1 && tempY == 0) return "West";
@@ -25,9 +26,6 @@ namespace WindowsFormsApplication1
             if (tempX == 0 && tempY == 1) return "South";
             if (tempX == 1 && tempY == 1) return "South East";
             else return "error";
-                
-            
-
         }
 
         public void Run()
@@ -45,7 +43,7 @@ namespace WindowsFormsApplication1
             pathFinder = new PathFinder(searchParameters);
             path = pathFinder.FindPath();
             ShowRoute("The algorithm should find a route around the obstacle:", path);
-           // Console.WriteLine();
+            // Console.WriteLine();
 
             // Finally, create a barrier between the start and end points
             /*InitializeMap();
@@ -56,15 +54,15 @@ namespace WindowsFormsApplication1
            // Console.WriteLine();
            */
 
-           // Console.WriteLine("Press any key to exit...");
-           // Console.ReadKey();
+            // Console.WriteLine("Press any key to exit...");
+            // Console.ReadKey();
         }
 
         private void ShowRoute(string title, IEnumerable<Point> path)
         {
             //Console.WriteLine("{0}\r\n", title);
             //for (int y = this.map.GetLength(1) - 1; y >= 0; y--) // Invert the Y-axis so that coordinate 0,0 is shown in the bottom-left
-            for(int y=0; y< this.map.GetLength(1); y++)
+            for (int y = 0; y < this.map.GetLength(1); y++)
             {
                 for (int x = 0; x < this.map.GetLength(0); x++)
                 {
@@ -84,41 +82,72 @@ namespace WindowsFormsApplication1
                     {
                         // Show the path in between
                         Form1.pctBox[x, y].BackColor = Color.Green;
-                        //Form1.text.AppendText("Step: " + (x + 1).ToString() + " " + (y + 1).ToString() + "\r\n");
                     }
-                    
+
                     //else
-                        // Show nodes that aren't part of the path
-                        //Console.Write('#');
-                        
+                    // Show nodes that aren't part of the path
+                    //Console.Write('#');
                 }
 
                 //Console.WriteLine();
             }
             for (int i = 0; i < path.Count(); i++)
             {
-                Form1.text.AppendText("Step: " + (path.ElementAt(i).X+1).ToString() + " " + (path.ElementAt(i).Y+1).ToString() + " ");
-                
-                
-                    int tempX;
-                    int tempY;
-                    if (i == 0)
-                    {
-                        tempX = path.ElementAt(i).X - this.searchParameters.StartLocation.X;
-                        tempY = path.ElementAt(i).Y - this.searchParameters.StartLocation.Y;
-                    }
-                    else
-                    {
-                        tempX = path.ElementAt(i).X - path.ElementAt(i - 1).X;
-                        tempY = path.ElementAt(i).Y - path.ElementAt(i - 1).Y;
-                    }
-                    Form1.text.AppendText(this.Direct(tempX, tempY)+ " \r\n");
+                Form1.text.AppendText("Step: " + (path.ElementAt(i).X + 1).ToString() + " " +
+                                      (path.ElementAt(i).Y + 1).ToString() + " ");
 
 
-                    
-                
+                int tempX;
+                int tempY;
+                if (i == 0)
+                {
+                    tempX = path.ElementAt(i).X - this.searchParameters.StartLocation.X;
+                    tempY = path.ElementAt(i).Y - this.searchParameters.StartLocation.Y;
+                }
+                else
+                {
+                    tempX = path.ElementAt(i).X - path.ElementAt(i - 1).X;
+                    tempY = path.ElementAt(i).Y - path.ElementAt(i - 1).Y;
+                }
+                Form1.text.AppendText(this.Direct(tempX, tempY) + " \r\n");
             }
             Form1.text.AppendText("Dotarłeś do celu. \r\n");
+            for (int k = 0; k < 10; k++)
+            {
+                Form1.TextBox1.AppendText("\r\n");
+                Form1.TextBox1.AppendText((k + 1).ToString() + " Pokolenie" + "Średnia ocena: " + test.srednia_ocena() +
+                                          " \r\n");
+                Form1.TextBox1.AppendText("\r\n");
+                for (int j = 0; j < test.osobnicy.Count(); j++)
+                {
+                    test.osobnicy.ElementAt(j).ocena = 0;
+                    for (int i = 0; i < path.Count(); i++)
+                    {
+                        int X = path.ElementAt(i).X;
+                        int Y = path.ElementAt(i).Y;
+                        if (EventMap[X, Y] == "Urwisko")
+                        {
+                            if (test.osobnicy.ElementAt(j).parametry.Contains("lina"))
+                                test.osobnicy.ElementAt(j).lvlUp();
+                        }
+                        if (EventMap[X, Y] == "Drzwi")
+                        {
+                            if (test.osobnicy.ElementAt(j).parametry.Contains("Łom"))
+                                test.osobnicy.ElementAt(j).lvlUp();
+                        }
+                        if (EventMap[X, Y] == "Pułapka")
+                        {
+                            if (test.osobnicy.ElementAt(j).parametry.Contains("Ciężarek"))
+                                test.osobnicy.ElementAt(j).lvlUp();
+                        }
+                    }
+
+                    Form1.TextBox1.AppendText(test.osobnicy.ElementAt(j).ocena.ToString() + " " +
+                                              test.osobnicy.ElementAt(j).mutant.ToString() + " \r\n");
+                }
+                test.selekcja();
+                test.reproduce();
+            }
         }
 
         private void InitializeMap()
@@ -160,9 +189,15 @@ namespace WindowsFormsApplication1
             this.map[4, 8] = false;
             this.map[4, 9] = false;
             this.map[4, 10] = false;
-            this.map[4,11] = false;
-            
-           
+            this.map[4, 11] = false;
+
+            //
+            Prog.EventMap[3, 10] = "Drzwi";
+            Prog.EventMap[3, 12] = "Urwisko";
+            Prog.EventMap[8, 10] = "Pułapka";
+
+
+            //
         }
 
         private void AddWallWithoutGap()

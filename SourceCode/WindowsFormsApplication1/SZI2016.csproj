@@ -54,7 +54,9 @@
     </Compile>
     <Compile Include="Node.cs" />
     <Compile Include="NodeState.cs" />
+    <Compile Include="osobnik.cs" />
     <Compile Include="PathFinder.cs" />
+    <Compile Include="populacja.cs" />
     <Compile Include="Prog.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

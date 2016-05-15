@@ -13,9 +13,11 @@ namespace WindowsFormsApplication1
     public partial class Form1 : Form
     {
         public static PictureBox[,] pctBox = new PictureBox[15, 15];
-        public static TextBox text;        
+        public static TextBox text;
+        public static TextBox TextBox1;
         public bool generated = false;
         public int[,] smallTab = new int[15, 15];
+
         public Form1()
         {
             InitializeComponent();
@@ -27,57 +29,67 @@ namespace WindowsFormsApplication1
             rysuj();
             this.ActiveControl = pctBox[1, 1];
         }
+
         public void dodajtextbox()
         {
             text = new TextBox();
+            TextBox1 = new TextBox();
+            TextBox1.ScrollBars = ScrollBars.Vertical;
+            TextBox1.Multiline = true;
+
+            TextBox1.Location = new System.Drawing.Point(480, 71);
+            TextBox1.Multiline = true;
+            TextBox1.Name = "textBox1";
+            TextBox1.Size = new System.Drawing.Size(155, 351);
+            TextBox1.TabIndex = 10;
+            TextBox1.Width = 200;
+            TextBox1.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             text.ScrollBars = ScrollBars.Vertical;
-            text.Location = new Point(10, (14 * 30) + 10);
+            text.Location = new Point(10, (14*30) + 10);
             text.Height = 100;
             text.Multiline = true;
             text.Width = 14*30;
             this.Controls.Add(text);
+            this.Controls.Add(TextBox1);
         }
 
         public void gentable()
         {
-            
-                for (int i = 0; i < 14; i++)
+            for (int i = 0; i < 14; i++)
+            {
+                for (int j = 0; j < 14; j++)
                 {
-                    for (int j = 0; j < 14; j++)
-                    {
-                        smallTab[i, j] = 1;
-                    }
+                    smallTab[i, j] = 1;
                 }
-           
+            }
+
             generated = true;
         }
+
         public void rysuj()
         {
-            if (generated = false)
+            if (generated == false)
             {
                 gentable();
             }
-                for (int i = 0; i < 14; i++)
-                {
+            for (int i = 0; i < 14; i++)
+            {
                 for (int j = 0; j < 14; j++)
                 {
-                    
-                        pctBox[i, j] = new PictureBox();
-                        pctBox[i, j].Height = 25;
-                        pctBox[i, j].Width = 25;
-                        if(smallTab[i, j] == 2)
-                        {
-                            pctBox[i, j].BackColor = Color.Gray;
-                        }
-                        else
-                        {
-                            pctBox[i, j].BackColor = Color.Brown;
-                        }
-                        pctBox[i, j].Location = new Point((i * 30) + 10, (j * 30) + 10);
+                    pctBox[i, j] = new PictureBox();
+                    pctBox[i, j].Height = 25;
+                    pctBox[i, j].Width = 25;
+                    if (smallTab[i, j] == 2)
+                    {
+                        pctBox[i, j].BackColor = Color.Gray;
+                    }
+                    else
+                    {
+                        pctBox[i, j].BackColor = Color.Brown;
+                    }
+                    pctBox[i, j].Location = new Point((i*30) + 10, (j*30) + 10);
 
-                        this.Controls.Add(pctBox[i, j]);
-
-                    
+                    this.Controls.Add(pctBox[i, j]);
                 }
             }
         }
@@ -87,6 +99,14 @@ namespace WindowsFormsApplication1
             Prog prog = new Prog();
             this.Text = string.Empty;
             prog.Run();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
         }
     }
 }
