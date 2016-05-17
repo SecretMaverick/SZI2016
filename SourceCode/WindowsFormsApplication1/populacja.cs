@@ -19,10 +19,14 @@ namespace WindowsFormsApplication1
 
         public void selekcja()
         {
-            for (int i = 0; i < osobnicy.Count(); i++)
-            {
-                if (osobnicy.ElementAt(i).ocena < 2) osobnicy.RemoveAt(i);
-            }
+           
+                osobnicy = osobnicy.OrderBy(o=>o.ocena).ToList();
+                for(int i=0; i<(osobnicy.Count()-5); i++)
+                {
+                    osobnicy.RemoveAt(i);
+                }
+
+            
         }
 
         public string srednia_ocena()
