@@ -43,7 +43,7 @@ namespace WindowsFormsApplication1
             TextBox1.Size = new System.Drawing.Size(155, 351);
             TextBox1.TabIndex = 10;
             TextBox1.Width = 200;
-            TextBox1.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            
             text.ScrollBars = ScrollBars.Vertical;
             text.Location = new Point(10, (14*30) + 10);
             text.Height = 100;
@@ -98,15 +98,12 @@ namespace WindowsFormsApplication1
         {
             Prog prog = new Prog();
             this.Text = string.Empty;
+            TextBox1.Text = string.Empty;
             prog.Run();
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-        }
+        
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-        }
+        
     }
 }

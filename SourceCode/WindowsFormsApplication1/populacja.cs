@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApplication1
 {
+
+    
     class Populacja
     {
+        public static Random random = new Random();
         public List<osobnik> osobnicy { get; set; }
 
         public Populacja()
@@ -51,7 +54,7 @@ namespace WindowsFormsApplication1
 
         public void reproduce()
         {
-            Random random = new Random();
+            //Random random = new Random();
             List<osobnik> pokolenie2 = osobnicy;
             int temp = pokolenie2.Count();
             for (int i = 0; i < (20 - temp); i++)
@@ -70,6 +73,7 @@ namespace WindowsFormsApplication1
                 potomek.mutacja();
                 pokolenie2.Add(potomek);
             }
+            //for (int i = 0; i < pokolenie2.Count(); i++) pokolenie2.ElementAt(i).ocena = 0;
             osobnicy = pokolenie2;
         }
     }

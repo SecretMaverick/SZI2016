@@ -10,8 +10,18 @@ namespace WindowsFormsApplication1
     class Prog
     {
         private bool[,] map;
-        public static string[,] EventMap = new string[14, 14];
+        public static Events[,] EventMap = new Events[14, 14];
         private SearchParameters searchParameters;
+        private static double[,] EventValue = 
+         {
+            { 0, 0, 0.8, 0, 0.5 },
+            { 0, 1, 1, 0, 0 },
+            { 0, 0.8, 0.8, 0, 0.5 },
+            { 1, 0, 0, 0, 1 },
+            { 0, 0, 0, 1, 0 },
+            { 0, 0, 0, 0, 1 },
+            { 0.8, 0, 0, 0, 1 }
+           };
 
         Populacja test = new Populacja();
 
@@ -27,11 +37,26 @@ namespace WindowsFormsApplication1
             if (tempX == 1 && tempY == 1) return "South East";
             else return "error";
         }
+        public void EventInitializator()
+        {
+            for(int i=0; i<14; i++)
+            {
+                for (int j = 0; j < 14; j++) EventMap[i, j] = Events.Pusto;
+            }
+
+            for (int i=0; i<14; i++)
+            {
+                int RandX = Populacja.random.Next(14);
+                int RandY = Populacja.random.Next(14);
+                EventMap[RandX, RandY] = (Events)Populacja.random.Next(5);
+            }
+        }
 
         public void Run()
         {
             // Start with a clear map (don't add any obstacles)
             InitializeMap();
+            EventInitializator();
             PathFinder pathFinder = new PathFinder(searchParameters);
             List<Point> path = pathFinder.FindPath();
             //ShowRoute("The algorithm should find a direct path without obstacles:", path);
@@ -112,38 +137,47 @@ namespace WindowsFormsApplication1
                 Form1.text.AppendText(this.Direct(tempX, tempY) + " \r\n");
             }
             Form1.text.AppendText("Dotarłeś do celu. \r\n");
+            List<Events> EventList = new List<Events>();
+            for(int i=0; i<path.Count(); i++)
+            {
+                if(EventMap[(path.ElementAt(i).X), (path.ElementAt(i).Y)] != Events.Pusto)
+                {
+                  EventList.Add(EventMap[path.ElementAt(i).X, path.ElementAt(i).Y]);
+                }
+            }
+            Form1.TextBox1.AppendText("Liczba eventów na trasie: " + EventList.Count().ToString() + "\r\n");
+            for (int i = 0; i < EventList.Count(); i++) Form1.TextBox1.AppendText(EventList.ElementAt(i).ToString() + ", ");
+            Form1.TextBox1.AppendText("\r\n");
             for (int k = 0; k < 10; k++)
             {
                 Form1.TextBox1.AppendText("\r\n");
                 Form1.TextBox1.AppendText((k + 1).ToString() + " Pokolenie" + "Średnia ocena: " + test.srednia_ocena() +
                                           " \r\n");
+                
                 Form1.TextBox1.AppendText("\r\n");
                 for (int j = 0; j < test.osobnicy.Count(); j++)
                 {
                     test.osobnicy.ElementAt(j).ocena = 0;
-                    for (int i = 0; i < path.Count(); i++)
+
+                    for (int l = 0; l < EventList.Count(); l++) 
                     {
-                        int X = path.ElementAt(i).X;
-                        int Y = path.ElementAt(i).Y;
-                        if (EventMap[X, Y] == "Urwisko")
+                        for (int i = 0; i < 3; i++)
                         {
-                            if (test.osobnicy.ElementAt(j).parametry.Contains("lina"))
-                                test.osobnicy.ElementAt(j).lvlUp();
-                        }
-                        if (EventMap[X, Y] == "Drzwi")
-                        {
-                            if (test.osobnicy.ElementAt(j).parametry.Contains("Łom"))
-                                test.osobnicy.ElementAt(j).lvlUp();
-                        }
-                        if (EventMap[X, Y] == "Pułapka")
-                        {
-                            if (test.osobnicy.ElementAt(j).parametry.Contains("Ciężarek"))
-                                test.osobnicy.ElementAt(j).lvlUp();
+                            double bestgrade = 0;
+                            if (EventValue[(int)test.osobnicy.ElementAt(j).parametry[i], (int)EventList.ElementAt(l)] > 0)
+                            {
+                                if (EventValue[(int)test.osobnicy.ElementAt(j).parametry[i], (int)EventList.ElementAt(l)] > bestgrade) bestgrade = EventValue[(int)test.osobnicy.ElementAt(j).parametry[i], (int)EventList.ElementAt(l)];
+                            }
+                            test.osobnicy.ElementAt(j).ocena = test.osobnicy.ElementAt(j).ocena + bestgrade;
+                            //test.osobnicy.ElementAt(j).ocena= test.osobnicy.ElementAt(j).ocena+ EventValue[(int)test.osobnicy.ElementAt(j).parametry[i], (int)EventList.ElementAt(l)]
+                            //(int)EventList.ElementAt(l)
+                            //(int)test.osobnicy.ElementAt(j).parametry[i]
+
                         }
                     }
 
                     Form1.TextBox1.AppendText(test.osobnicy.ElementAt(j).ocena.ToString() + " " +
-                                              test.osobnicy.ElementAt(j).mutant.ToString() + " \r\n");
+                                              test.osobnicy.ElementAt(j).mutant.ToString() + " "+test.osobnicy.ElementAt(j).parametry[0].ToString()+ " "+test.osobnicy.ElementAt(j).parametry[1].ToString()+" "+ test.osobnicy.ElementAt(j).parametry[2].ToString() +" \r\n");
                 }
                 test.selekcja();
                 test.reproduce();
@@ -192,9 +226,7 @@ namespace WindowsFormsApplication1
             this.map[4, 11] = false;
 
             //
-            Prog.EventMap[3, 10] = "Drzwi";
-            Prog.EventMap[3, 12] = "Urwisko";
-            Prog.EventMap[8, 10] = "Pułapka";
+           
 
 
             //
